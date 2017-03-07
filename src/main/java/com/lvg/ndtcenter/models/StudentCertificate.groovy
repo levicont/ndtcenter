@@ -1,6 +1,7 @@
 package com.lvg.ndtcenter.models
 
 import com.lvg.ndtcenter.config.R
+import groovy.time.TimeCategory
 import groovy.transform.Canonical
 
 import java.time.LocalDate
@@ -24,8 +25,8 @@ class StudentCertificate {
     }
 
     LocalDate getBestBeforeDate(){
-        return null == bestBeforeDate ? getAssignDate().plusYears(
-                R.DefaultValues.DEFAULT_STUDENT_CERT_BEST_BEFORE_YEARS): bestBeforeDate
+        return null == bestBeforeDate ? getAssignDate().plusYears(R.DefaultValues.DEFAULT_STUDENT_CERT_BEST_BEFORE_YEARS)
+                : bestBeforeDate
     }
 
     Set<ISOSectors> getSectors(){

@@ -2,18 +2,27 @@ package com.lvg.ndtcenter.models
 
 import com.lvg.ndtcenter.config.R
 import groovy.transform.Canonical
+import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.Version
+import org.springframework.format.annotation.DateTimeFormat
 
 import java.time.LocalDate
 
 @Canonical
 class Student {
-    Long id
+    @Id
+    BigInteger studentId
     String name
     String secondName
     String lastName
+    @DateTimeFormat(pattern = R.DefaultValues.DEFAULT_DATE_FORMAT_PATTERN)
     LocalDate birthDate
     String birthPlace
-    Set<StudentCertificate> studentCertificates = []
+    String homeAddress
+    String phone
+    String email
+    @Version
+    Integer version
 
     LocalDate getBirthDate(){
         return birthDate == null ? R.DefaultValues.DEFAULT_BIRTH_DATE : birthDate

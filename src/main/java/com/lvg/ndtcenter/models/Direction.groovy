@@ -2,30 +2,36 @@ package com.lvg.ndtcenter.models
 
 import com.lvg.ndtcenter.config.R
 import groovy.transform.Canonical
+import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.Version
+import org.springframework.data.mongodb.core.mapping.DBRef
 
 import java.time.LocalDate
 
 @Canonical
-class DirectionUcnk {
-    Long id
-    String num
-    LocalDate assignDate
+class Direction {
+    @Id
+    BigInteger directionId
+    String requestNumber
+    LocalDate requestDate
     LocalDate bestBeforeDate
-    QualifRate qualifRate
     NDTMethod method
+    QualifRate qualifRate
     Set<ISOSectors> sectors = []
     Integer learnHours
     Student student
     Company company
+    @Version
+    Integer version
 
 
     LocalDate getBestBeforeDate(){
-        bestBeforeDate = getAssignDate().plusYears(1)
+        bestBeforeDate = getRequestDate().plusYears(1)
         return bestBeforeDate
     }
 
-    LocalDate getAssignDate(){
-        return assignDate == null ? LocalDate.now() : assignDate
+    LocalDate getRequestDate(){
+        return requestDate == null ? LocalDate.now() : requestDate
     }
 
     QualifRate getQualifRate(){
