@@ -37,6 +37,7 @@ class RObjects {
 
     static Direction getTestDirection(){
         Direction direction = new Direction()
+        direction.requestNumber = '318-3'
         direction.company = getTestCompany()
         direction.student = getTestStudent()
         direction.method = NDTMethod.MT
@@ -46,6 +47,24 @@ class RObjects {
         direction.sectors = R.DefaultValues.DEFAULT_SECTORS_SET + ISOSectors.SEVEN
         direction
 
+    }
+
+    static enum DataBase{
+        TEST_DB_NAME('test'),
+        STUDENT_COLLECTION_NAME('student'),
+        COMPANY_COLLECTION_NAME('company'),
+        DIRECTION_COLLECTION_NAME('direction')
+
+        String value
+
+        DataBase(String val){
+            this.value = val
+        }
+
+        @Override
+        String toString() {
+            return value
+        }
     }
 
 }

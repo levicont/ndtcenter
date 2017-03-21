@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>NDT Center</title>
+        <script src="#" th:src="@{/webjars/jquery/2.2.4/jquery.min.js}"></script>
+        <link rel="stylesheet" href="#" th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}">
+        <script src="#" th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+
+        <script src="#" th:src="@{/webjars/datatables/1.10.13/js/jquery.dataTables.min.js}"></script>
+        <script src="#" th:src="@{/webjars/datatables/1.10.13/js/dataTables.bootstrap.min.js}"></script>
+        <link rel="stylesheet" href="#" th:href="@{/webjars/datatables/1.10.13/css/dataTables.bootstrap.min.css}">
+        <script src="#" th:src="@{/js/data-tables/dataTables.buttons.min.js}"></script>
+        <link rel="stylesheet" href="#" th:href="@{/js/data-tables/buttons.dataTables.min.css}">
+
+    </head>
+    <body>
+
+
+        <div th:include="nav-menu :: nav-menu">
+        </div>
+        <div class="container">
+            <div th:if="${content == 'directions-table'}">
+                <div th:include="direction :: directions-table"></div>
+            </div>
+
+        </div>
+
+    </body>
+</html>

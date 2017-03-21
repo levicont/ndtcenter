@@ -1,16 +1,13 @@
 package com.lvg.tests.models.com.lvg.tests.mongo
 
-import com.lvg.ndtcenter.config.R
 import com.lvg.ndtcenter.models.Company
-import com.lvg.ndtcenter.models.Student
 import com.lvg.ndtcenter.repositories.CompanyRepository
 import com.lvg.tests.models.com.lvg.tests.config.RObjects
 import org.junit.Before
 import org.junit.Test
 import org.springframework.beans.factory.annotation.Autowired
 
-import java.time.LocalDate
-import java.time.Month
+import static com.lvg.tests.models.com.lvg.tests.config.RObjects.DataBase.*
 
 class GCompanyRepositoryTest extends GCommonMongoTest{
     private final Company company = RObjects.getTestCompany()
@@ -20,7 +17,7 @@ class GCompanyRepositoryTest extends GCommonMongoTest{
 
     @Before
     void setup(){
-        init('company')
+        init(COMPANY_COLLECTION_NAME)
     }
 
     @Test

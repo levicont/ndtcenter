@@ -9,7 +9,9 @@ import java.time.Month
 import java.time.format.DateTimeFormatter
 
 interface R {
-
+    interface Templates{
+        String DIRECTION_LIST_TEMPLATE = 'directions-table'
+    }
     interface DefaultValues{
         int DEFAULT_BIRTH_YEAR = 1990
         Month DEFAULT_BIRTH_MONTH = Month.JANUARY

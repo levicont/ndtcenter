@@ -17,5 +17,10 @@ enum ISOSectors {
 
     private final Integer number
 
-    Integer number(){number}
+    Integer getNumber(){number}
+
+    @Override
+    String toString() {
+        return number
+    }
 }

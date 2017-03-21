@@ -20,7 +20,7 @@ class GStudentRepositoryTest extends GCommonMongoTest{
 
     @Before
     void setup(){
-        init('student')
+        init(RObjects.DataBase.STUDENT_COLLECTION_NAME)
     }
 
     @Test

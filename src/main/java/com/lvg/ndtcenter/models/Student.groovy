@@ -32,4 +32,9 @@ class Student {
         return birthPlace == null ? R.DefaultValues.DEFAULT_BIRTH_PLACE : birthPlace
     }
 
+
+    @Override
+    String toString() {
+        return "$lastName $name $secondName"
+    }
 }

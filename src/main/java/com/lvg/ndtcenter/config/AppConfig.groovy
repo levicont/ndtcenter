@@ -7,12 +7,11 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
-import org.springframework.web.servlet.config.annotation.EnableWebMvc
 
 @Configuration
 @EnableMongoRepositories('com.lvg.ndtcenter.repositories')
-@ComponentScan(['com.lvg.ndtcenter.listeners'])
-class AppConfig {
+@ComponentScan(['com.lvg.ndtcenter.listeners','com.lvg.ndtcenter.services'])
+class AppConfig  {
 
     @Bean
     MongoClient mongoClient(){
@@ -24,6 +23,10 @@ class AppConfig {
     MongoTemplate mongoTemplate(){
         return new MongoTemplate(mongoClient(), "test")
     }
+
+
+
+
 
 
 }

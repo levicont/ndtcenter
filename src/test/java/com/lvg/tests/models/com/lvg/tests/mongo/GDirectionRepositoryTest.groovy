@@ -9,6 +9,8 @@ import org.junit.Before
 import org.junit.Test
 import org.springframework.beans.factory.annotation.Autowired
 
+import static com.lvg.tests.models.com.lvg.tests.config.RObjects.DataBase.*
+
 
 class GDirectionRepositoryTest extends GCommonMongoTest{
     private Direction direction = RObjects.getTestDirection()
@@ -22,15 +24,17 @@ class GDirectionRepositoryTest extends GCommonMongoTest{
 
     @Before
     void setup(){
-        init('direction')
+        init(DIRECTION_COLLECTION_NAME)
     }
 
     @Test
     void testDirectionSave(){
         def direction1 = directionRepository.save(direction)
         assert null != direction1.directionId
+        assert null != direction1.requestNumber
         assert null != direction1.student.studentId
         assert null != direction1.company.companyId
+
     }
 
     @Test

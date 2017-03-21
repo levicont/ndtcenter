@@ -120,6 +120,7 @@ class GModelsTest extends GroovyTestCase{
     void testDirection(){
         Direction direction = testMap.get(DIRECTION_TEST_KEY)
         LocalDate assignDate = direction.getRequestDate()
+        assertNotNull(direction.requestNumber)
         assertNotNull(assignDate)
         assertEquals(assignDate.plusYears(1), direction.getBestBeforeDate())
         assertEquals(R.DefaultValues.DEFAULT_DIRECTION_QUALIF_RATE, direction.getQualifRate())

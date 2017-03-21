@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Direction</title>
+</head>
+<body>
+    <div th:fragment="directions-table">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="h3 text-center" th:text="#{nav.menu.ucnk.direction}">Directions</p>
+            </div>
+            <div class="col-md-12">
+                <p class="form form-inline">
+                    <input class="btn btn-primary btn-sm" type="button" th:value="#{button.add}" value="Add">
+                    <input class="btn btn-primary btn-sm" type="button" th:value="#{button.edit}" value="Edit">
+                    <input class="btn btn-primary btn-sm" type="button" th:value="#{button.delete}" value="Delete">
+                </p>
+            </div>
+            <div class="col-md-12">
+                <table id="directions" class="table display">
+                    <thead>
+                    <tr>
+                        <th><div class="checkbox"><input type="checkbox"></div></th>
+                        <th th:text="#{direction.ucnk.table.requestNumber}">#</th>
+                        <th th:text="#{direction.ucnk.table.student}">Student</th>
+                        <th th:text="#{direction.ucnk.table.method}">Method</th>
+                        <th th:text="#{direction.ucnk.table.sectors}">Sectors</th>
+                        <th th:text="#{direction.ucnk.table.hours}">Hours</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="direction : ${directions}" th:class="odd">
+                        <td><form class="form-inline">
+                            <div class="checkbox">
+                                <input type="checkbox">
+                            </div>
+                        </form></td>
+                        <td th:text="${direction.requestNumber}">#Num</td>
+                        <td th:text="${direction.student}">Student</td>
+                        <td th:text="${direction.method}">Method</td>
+                        <td> <span th:each="sector : ${direction.sectors}"
+                                   th:text="${sector.number+' '}"></span> </td>
+                        <td th:text="${direction.learnHours}">Hours</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+                <script th:inline="javascript">
+                    $(document).ready( function () {
+                    var initButton = function(){
+                       button = $('a.dt-button');
+                       button.removeClass('dt-button');
+                       button.addClass('btn btn-primary btn-sm lvg-dt-button');
+
+                    };
+                    var updateButtonDiv = function(){
+                        div = $('div.dt-buttons');
+                        div.append("<div id='dt-buttons-holder' class='form-inline'>");
+
+                        buttons = $('lvg-dt-button');
+                        $.each(buttons, function(index, button){
+                            div.remove(button);
+                        });
+                        $('#dt-buttons-holder').append(buttons);
+                    };
+
+                    $('#directions').DataTable({
+                            dom: "lBfrtip",
+                            language:[(#{data.table.language})],
+                            buttons:[ { text:'add' },
+                                      {text:'delete'}  ]
+                        });
+                    initButton();
+                    updateButtonDiv();
+                    } );
+                </script>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
