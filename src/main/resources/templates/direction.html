@@ -10,13 +10,8 @@
             <div class="col-md-12">
                 <p class="h3 text-center" th:text="#{nav.menu.ucnk.direction}">Directions</p>
             </div>
-            <div class="col-md-12">
-                <p class="form form-inline">
-                    <input class="btn btn-primary btn-sm" type="button" th:value="#{button.add}" value="Add">
-                    <input class="btn btn-primary btn-sm" type="button" th:value="#{button.edit}" value="Edit">
-                    <input class="btn btn-primary btn-sm" type="button" th:value="#{button.delete}" value="Delete">
-                </p>
-            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12">
                 <table id="directions" class="table display">
                     <thead>
@@ -30,10 +25,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="direction : ${directions}" th:class="odd">
+                    <tr th:each="direction : ${directions}">
                         <td><form class="form-inline">
                             <div class="checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" class="lvg-dt-checkbox-item">
                             </div>
                         </form></td>
                         <td th:text="${direction.requestNumber}">#Num</td>
@@ -52,27 +47,25 @@
                        button = $('a.dt-button');
                        button.removeClass('dt-button');
                        button.addClass('btn btn-primary btn-sm lvg-dt-button');
+                       button.attr('style','margin-right:5px; margin-bottom:5px');
 
+                       delButton = $('.lvg-dt-button-delete').addClass('disabled');
                     };
                     var updateButtonDiv = function(){
                         div = $('div.dt-buttons');
+                        div.addClass('form form-inline');
                         div.append("<div id='dt-buttons-holder' class='form-inline'>");
-
-                        buttons = $('lvg-dt-button');
-                        $.each(buttons, function(index, button){
-                            div.remove(button);
-                        });
-                        $('#dt-buttons-holder').append(buttons);
                     };
-
+                    var btAddName = '[(#{button.add})]';
+                    var btDeleteName = '[(#{button.delete})]';
                     $('#directions').DataTable({
                             dom: "lBfrtip",
                             language:[(#{data.table.language})],
-                            buttons:[ { text:'add' },
-                                      {text:'delete'}  ]
+                            buttons:[ { text:btAddName },
+                                      {text:btDeleteName, className:'lvg-dt-button-delete'}  ]
                         });
                     initButton();
-                    updateButtonDiv();
+
                     } );
                 </script>
             </div>
