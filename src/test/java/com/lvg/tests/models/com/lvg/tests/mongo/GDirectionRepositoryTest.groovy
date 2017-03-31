@@ -50,6 +50,22 @@ class GDirectionRepositoryTest extends GCommonMongoTest{
         assert NDTMethod.RT == direction2.method
         assert 'IVAN' == direction2.student.name
         assert 'Microsoft' == direction2.company.name
+
+        direction1 = directionRepository.findByDirectionId(direction.directionId)
+        def studentId = direction.student.studentId
+        direction1.student = null
+
+        student = studentRepository.findByStudentId(studentId)
+
+        direction1.student = student
+        direction1.student.name = 'RICHARD'
+        direction2 = directionRepository.save(direction1)
+
+        student = studentRepository.findByStudentId(student.studentId)
+
+        assert  null != direction2
+        assert  direction2.student.name == 'RICHARD'
+        assert direction2.student.version == student.version
     }
 
     @Test

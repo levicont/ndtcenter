@@ -6,14 +6,19 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.Version
 import org.springframework.format.annotation.DateTimeFormat
 
+import javax.validation.constraints.Min
+import javax.validation.constraints.NotNull
 import java.time.LocalDate
 
 @Canonical
 class Student {
     @Id
     BigInteger studentId
+    @Min(2l)
     String name
+    @Min(2l)
     String secondName
+    @Min(2l)
     String lastName
     @DateTimeFormat(pattern = R.DefaultValues.DEFAULT_DATE_FORMAT_PATTERN)
     LocalDate birthDate

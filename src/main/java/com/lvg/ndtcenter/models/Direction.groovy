@@ -2,18 +2,24 @@ package com.lvg.ndtcenter.models
 
 import com.lvg.ndtcenter.config.R
 import groovy.transform.Canonical
+import org.hibernate.validator.constraints.NotEmpty
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.Version
 import org.springframework.data.mongodb.core.mapping.DBRef
+import org.springframework.format.annotation.DateTimeFormat
 
 import java.time.LocalDate
+
+import static com.lvg.ndtcenter.config.R.DefaultValues.DEFAULT_DATE_FORMAT_PATTERN
 
 @Canonical
 class Direction {
     @Id
     BigInteger directionId
     String requestNumber
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = DEFAULT_DATE_FORMAT_PATTERN)
     LocalDate requestDate
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = DEFAULT_DATE_FORMAT_PATTERN)
     LocalDate bestBeforeDate
     NDTMethod method
     QualifRate qualifRate

@@ -7,4 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface DirectionRepository extends MongoRepository<Direction, BigInteger>{
     List<Direction> findByStudent(Student student)
+    Direction findByDirectionId(BigInteger directionID)
 }

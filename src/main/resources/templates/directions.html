@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Direction</title>
+</head>
+<body>
+<div th:fragment="directions-table">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="h3 text-center" th:text="#{nav.menu.ucnk.directions}">Directions</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="directions" class="table display">
+                <thead>
+                <tr>
+                    <th>
+                        <div class="checkbox"><input type="checkbox"></div>
+                    </th>
+                    <th th:text="#{direction.ucnk.table.requestNumber}">#</th>
+                    <th th:text="#{direction.ucnk.table.student}">Student</th>
+                    <th th:text="#{direction.ucnk.table.method}">Method</th>
+                    <th th:text="#{direction.ucnk.table.sectors}">Sectors</th>
+                    <th th:text="#{direction.ucnk.table.hours}">Hours</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="direction : ${directions}">
+                    <td>
+                        <form class="form-inline">
+                            <div class="checkbox">
+                                <input type="checkbox" class="lvg-dt-checkbox-item">
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="#" th:href="@{directions/{Id}(Id=${direction.directionId})}"
+                           th:text="${direction.requestNumber}">Num</a></td>
+                    <td th:text="${direction.student}">Student</td>
+                    <td th:text="${direction.method}">Method</td>
+                    <td> <span th:each="sector : ${direction.sectors}"
+                               th:text="${sector.number+' '}"></span></td>
+                    <td th:text="${direction.learnHours}">Hours</td>
+
+                </tr>
+                </tbody>
+            </table>
+            <script th:inline="javascript">
+                    $(document).ready( function () {
+                    var initButton = function(){
+                       button = $('a.dt-button');
+                       button.removeClass('dt-button');
+                       button.addClass('btn btn-primary btn-sm lvg-dt-button');
+                       button.attr('style','margin-right:5px; margin-bottom:5px');
+
+                       delButton = $('.lvg-dt-button-delete').addClass('disabled');
+                    };
+                    var updateButtonDiv = function(){
+                        div = $('div.dt-buttons');
+                        div.addClass('form form-inline');
+                        div.append("<div id='dt-buttons-holder' class='form-inline'>");
+                    };
+                    var btAddName = '[(#{button.add})]';
+                    var btDeleteName = '[(#{button.delete})]';
+                    $('#directions').DataTable({
+                            dom: "lBfrtip",
+                            language:[(#{data.table.language})],
+                            buttons:[ { text:btAddName },
+                                      {text:btDeleteName, className:'lvg-dt-button-delete'}  ]
+                        });
+                    initButton();
+
+                    } );
+
+
+            </script>
+        </div>
+    </div>
+</div>
+<div th:fragment="direction-form">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form" action="#"
+                  th:action="@{{Id}(Id=${direction.directionId}, form='')}"
+                  th:method="post" th:object="${direction}">
+                <input type="hidden" name="student" th:field="*{student}">
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+                        <p class="h2 text-center" th:text="#{nav.menu.ucnk.direction}">Direction</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="companyName"
+                                                   th:text="#{direction.ucnk.form.companyName}">Company Name</label>
+                                            <input id="companyName" class="form-control"
+                                                   type="text" name="companyName" th:value="*{company.name}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="requestNumber"
+                                                   th:text="#{direction.ucnk.form.requestNumber}">Request Number</label>
+                                            <input id="requestNumber" class="form-control"
+                                                   type="text" name="requestNumber" th:value="*{requestNumber}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="requestDate"
+                                                   th:text="#{direction.ucnk.form.requestDate}">Request Date</label>
+                                            <input id="requestDate" class="form-control"
+                                                   type="date" name="requestDate" th:value="*{{requestDate}}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="studentLastName"
+                                                   th:text="#{direction.ucnk.form.studentLastName}">Last Name</label>
+                                            <input id="studentLastName" class="form-control"
+                                                   type="text" name="studentLastName" th:value="*{student.lastName}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="studentName"
+                                                   th:text="#{direction.ucnk.form.studentName}">Name</label>
+                                            <input id="studentName" class="form-control"
+                                                   type="text" name="studentName" th:value="*{student.name}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="studentSecondName"
+                                                   th:text="#{direction.ucnk.form.studentSecondName}">Second
+                                                Name</label>
+                                            <input id="studentSecondName" class="form-control"
+                                                   type="text" name="studentSecondName"
+                                                   th:value="*{student.secondName}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="method"
+                                                   th:text="#{direction.ucnk.form.method}">NDT Method</label>
+                                            <select id="method" th:field="*{method}">
+                                                <option th:each="methodName : ${ndtMethods}"
+                                                        th:value="${methodName}"
+                                                        th:text="${methodName}">MT
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="qualifRate"
+                                                   th:text="#{direction.ucnk.form.qualifRate}">Qualification
+                                                Rate</label>
+                                            <select id="qualifRate" th:field="*{qualifRate}">
+                                                <option th:each="value : ${qualifRates}"
+                                                        th:value="${value}"
+                                                        th:text="${value}">II
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label th:text="#{direction.ucnk.form.sectors}">Sectors</label>
+                                        <span th:each="sector : ${sectors}">
+                                         <input type="checkbox" th:field="*{sectors}"
+                                                th:value="${{sector}}">
+                                        <label th:for="${#ids.prev('sectors')}"
+                                               th:utext="${sector}+'&nbsp;&nbsp;&nbsp;'">Sector
+                                        </label>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="learnHours"
+                                                   th:text="#{direction.ucnk.form.learnHours}">Learn Hours</label>
+                                            <input id="learnHours" class="form-control"
+                                                   type="text" name="learnHours" th:value="*{learnHours}"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+
+
+                        <input type="submit" class="btn btn-primary" th:value="#{direction.ucnk.form.btn.save}"/>
+
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

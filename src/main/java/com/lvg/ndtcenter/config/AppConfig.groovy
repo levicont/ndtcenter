@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor
 
 @Configuration
 @EnableMongoRepositories('com.lvg.ndtcenter.repositories')
@@ -22,6 +24,11 @@ class AppConfig  {
     @Bean
     MongoTemplate mongoTemplate(){
         return new MongoTemplate(mongoClient(), "test")
+    }
+
+    @Bean
+    LocalValidatorFactoryBean validator(){
+        return new LocalValidatorFactoryBean()
     }
 
 

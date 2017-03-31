@@ -22,10 +22,7 @@ class DirectionDbListener extends AbstractMongoEventListener<Direction>{
         def student = direction.student
         def company = direction.company
 
-        student = studentRepository.save(student)
-        company = companyRepository.save(company)
-
-        direction.student = student
-        direction.company = company
+        studentRepository.save(student)
+        companyRepository.save(company)
     }
 }

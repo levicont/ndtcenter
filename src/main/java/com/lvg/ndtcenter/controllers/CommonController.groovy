@@ -18,7 +18,7 @@ class CommonController {
         def date = LocalDate.now()
 
         model.put("date",date)
-        return "home"
+        return "redirect:/"
     }
 
 

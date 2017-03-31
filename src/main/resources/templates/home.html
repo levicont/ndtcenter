@@ -20,7 +20,10 @@
         </div>
         <div class="container">
             <div th:if="${content == 'directions-table'}">
-                <div th:include="direction :: directions-table"></div>
+                <div th:include="directions :: directions-table"></div>
+            </div>
+            <div th:if="${content == 'direction'}">
+                <div th:include="directions :: direction-form"></div>
             </div>
 
         </div>

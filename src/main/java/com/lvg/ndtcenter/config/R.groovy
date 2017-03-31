@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter
 interface R {
     interface Templates{
         String DIRECTION_LIST_TEMPLATE = 'directions-table'
+        String DIRECTION_TEMPLATE = 'direction'
     }
     interface DefaultValues{
         int DEFAULT_BIRTH_YEAR = 1990
