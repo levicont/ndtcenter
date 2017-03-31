@@ -12,7 +12,7 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 
 @Configuration
 @EnableMongoRepositories('com.lvg.ndtcenter.repositories')
-@ComponentScan(['com.lvg.ndtcenter.listeners','com.lvg.ndtcenter.services'])
+@ComponentScan(['com.lvg.ndtcenter.listeners','com.lvg.ndtcenter.services','com.lvg.ndtcenter.validators'])
 class AppConfig  {
 
     @Bean
