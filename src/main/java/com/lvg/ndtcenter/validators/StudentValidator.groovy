@@ -22,13 +22,13 @@ class StudentValidator implements Validator{
         Student student = o
         def size = 2..30
         def nameSize = student.name.size()
-        if (size.contains(nameSize)){
+        if (!size.contains(nameSize)){
             errors.rejectValue('name','invalid.student.name.size','invalid.student.name.size')
         }
-        if (size.contains(student.lastName.size())){
+        if (!size.contains(student.lastName.size())){
             errors.rejectValue('lastName','invalid.student.lastName.size','invalid.student.lastName.size')
         }
-        if (size.contains(student.secondName.size())){
+        if (!size.contains(student.secondName.size())){
             errors.rejectValue('secondName','invalid.student.secondName.size','invalid.student.secondName.size')
         }
 

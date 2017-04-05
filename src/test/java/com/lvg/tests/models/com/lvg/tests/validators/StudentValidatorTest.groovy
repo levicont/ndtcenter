@@ -6,12 +6,12 @@ import com.lvg.tests.models.com.lvg.tests.config.RObjects
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.MessageSource
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import org.springframework.validation.BeanPropertyBindingResult
 import org.springframework.validation.ObjectError
 import org.springframework.validation.ValidationUtils
-import org.springframework.validation.Validator
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = [AppConfig.class])
@@ -19,6 +19,8 @@ class StudentValidatorTest extends GroovyTestCase{
 
     @Autowired
     StudentValidator studentValidator
+    @Autowired
+    MessageSource messages
 
     @Test
     void testValidation(){
@@ -28,15 +30,19 @@ class StudentValidatorTest extends GroovyTestCase{
         BeanPropertyBindingResult result = new BeanPropertyBindingResult(student, 'Student')
         ValidationUtils.invokeValidator(studentValidator, student, result)
         List<ObjectError> errors = result.allErrors
-        def printErrors = { errors.each {println it.code}}
-        printErrors()
-        assert errors.size() == 1
+        def printErrors = { error ->
+            error.each {println messages.getMessage(it.code+'')}}
+        printErrors(errors)
+        assert errors.size() == 2
+
+
+        def student2 = RObjects.testStudent
+        result = new BeanPropertyBindingResult(student, 'student')
 
         student.name = 'W'
-        def result2 = new BeanPropertyBindingResult(student, 'Student2')
-        ValidationUtils.invokeValidator(studentValidator, student, result2)
-        errors = result2.allErrors
-        printErrors()
+        ValidationUtils.invokeValidator(studentValidator, student, result)
+        errors = result.allErrors
+        printErrors(errors)
         assert errors.size() == 1
     }
 }
