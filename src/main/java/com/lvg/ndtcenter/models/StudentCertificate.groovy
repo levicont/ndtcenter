@@ -1,7 +1,6 @@
 package com.lvg.ndtcenter.models
 
 import com.lvg.ndtcenter.config.R
-import groovy.time.TimeCategory
 import groovy.transform.Canonical
 
 import java.time.LocalDate

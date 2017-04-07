@@ -1,11 +1,7 @@
 package com.lvg.ndtcenter.controllers
 
 import com.lvg.ndtcenter.config.R
-import com.lvg.ndtcenter.models.Company
-import com.lvg.ndtcenter.models.Direction
-import com.lvg.ndtcenter.models.ISOSectors
-import com.lvg.ndtcenter.models.NDTMethod
-import com.lvg.ndtcenter.models.QualifRate
+import com.lvg.ndtcenter.models.*
 import com.lvg.ndtcenter.services.CompanyService
 import com.lvg.ndtcenter.services.DirectionService
 import groovy.util.logging.Log4j
@@ -14,22 +10,15 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.*
 
 import javax.validation.Validator
-import javax.validation.constraints.Min
-import javax.validation.constraints.NotNull
-
 
 @Controller
 @RequestMapping('directions')
 @Log4j
 @Validated
-class DirectionUCNKController {
+class DirectionUcnkController {
     @Autowired
     DirectionService directionService
     @Autowired

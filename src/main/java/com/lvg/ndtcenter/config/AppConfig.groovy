@@ -8,11 +8,13 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
-import org.springframework.validation.beanvalidation.MethodValidationPostProcessor
 
 @Configuration
 @EnableMongoRepositories('com.lvg.ndtcenter.repositories')
-@ComponentScan(['com.lvg.ndtcenter.listeners','com.lvg.ndtcenter.services','com.lvg.ndtcenter.validators'])
+@ComponentScan(['com.lvg.ndtcenter.listeners',
+                'com.lvg.ndtcenter.services',
+                'com.lvg.ndtcenter.validators',
+                'com.lvg.ndtcenter.controllers'])
 class AppConfig  {
 
     @Bean

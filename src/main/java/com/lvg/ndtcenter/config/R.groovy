@@ -3,7 +3,6 @@ package com.lvg.ndtcenter.config
 import com.lvg.ndtcenter.models.ISOSectors
 import com.lvg.ndtcenter.models.QualifRate
 
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Month
 import java.time.format.DateTimeFormatter

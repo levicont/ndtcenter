@@ -2,10 +2,8 @@ package com.lvg.ndtcenter.models
 
 import com.lvg.ndtcenter.config.R
 import groovy.transform.Canonical
-import org.hibernate.validator.constraints.NotEmpty
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.Version
-import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.format.annotation.DateTimeFormat
 
 import java.time.LocalDate

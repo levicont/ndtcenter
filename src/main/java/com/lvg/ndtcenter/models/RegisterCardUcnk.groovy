@@ -1,9 +1,6 @@
 package com.lvg.ndtcenter.models
 
-import com.lvg.ndtcenter.config.R
-
 import java.time.LocalDate
-
 
 class RegisterCardUcnk {
     Long registerCardUcnkId
