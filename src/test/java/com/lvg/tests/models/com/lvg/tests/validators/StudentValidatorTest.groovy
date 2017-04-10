@@ -6,6 +6,7 @@ import com.lvg.tests.models.com.lvg.tests.config.RObjects
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.MessageSource
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
@@ -14,6 +15,7 @@ import org.springframework.validation.ObjectError
 import org.springframework.validation.ValidationUtils
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 @ContextConfiguration(classes = [AppConfig.class])
 class StudentValidatorTest extends GroovyTestCase{
 
@@ -31,7 +33,7 @@ class StudentValidatorTest extends GroovyTestCase{
         ValidationUtils.invokeValidator(studentValidator, student, result)
         List<ObjectError> errors = result.allErrors
         def printErrors = { error ->
-            error.each {println messages.getMessage(it.code+'')}}
+            error.each {println messages.getMessage(it.code+'', null, null)}}
         printErrors(errors)
         assert errors.size() == 2
 
@@ -40,9 +42,11 @@ class StudentValidatorTest extends GroovyTestCase{
         result = new BeanPropertyBindingResult(student, 'student')
 
         student.name = 'W'
+        student.lastName = 'X'
+        student.secondName = 'Y'
         ValidationUtils.invokeValidator(studentValidator, student, result)
         errors = result.allErrors
         printErrors(errors)
-        assert errors.size() == 1
+        assert errors.size() == 3
     }
 }

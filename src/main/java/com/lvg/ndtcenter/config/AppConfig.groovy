@@ -5,6 +5,7 @@ import com.mongodb.MongoClientURI
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.support.ResourceBundleMessageSource
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
@@ -31,6 +32,13 @@ class AppConfig  {
     @Bean
     LocalValidatorFactoryBean validator(){
         return new LocalValidatorFactoryBean()
+    }
+
+    @Bean
+    ResourceBundleMessageSource messageSource(){
+        ResourceBundleMessageSource ms = new ResourceBundleMessageSource()
+        ms.addBasenames('templates/home')
+        return ms
     }
 
 
