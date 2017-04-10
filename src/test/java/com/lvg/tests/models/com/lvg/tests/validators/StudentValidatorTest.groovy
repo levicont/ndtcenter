@@ -33,7 +33,7 @@ class StudentValidatorTest extends GroovyTestCase{
         ValidationUtils.invokeValidator(studentValidator, student, result)
         List<ObjectError> errors = result.allErrors
         def printErrors = { error ->
-            error.each {println messages.getMessage(it.code+'', null, null)}}
+            error.each { println messages.getMessage(it.code, null, null)}}
         printErrors(errors)
         assert errors.size() == 2
 
